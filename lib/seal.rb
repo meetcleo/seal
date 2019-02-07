@@ -26,7 +26,7 @@ class Seal
 
   def teams
     if @team.nil? && org_config
-      org_config.keys
+      org_config.keys.reject { |x| x.to_s.start_with? '_' }
     else
       [@team]
     end

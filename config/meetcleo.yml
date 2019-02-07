@@ -1,5 +1,19 @@
-# Please insert new items alphabetically.
+_defaults: &defaults
+  exclude_titles:
+    - "WIP"
+    - "[WIP]"
+    - "DO NOT MERGE"
+    - "[DO NOT MERGE]"
+
+  exclude_labels:
+    - "Waiting on copy"
+
+  include_repos:
+    - meetcleo
+
 core:
+  <<: *defaults
+
   members:
     - bryonywatson1
     - GeorgeA93
@@ -7,14 +21,37 @@ core:
     - mijoharas
     - tommg
 
-  channel:
-    "#core_squad"
+  channel: "#core_squad"
 
-  exclude_titles:
-    - "WIP"
-    - "[WIP]"
-    - "DO NOT MERGE"
-    - "[DO NOT MERGE]"
+growth:
+  <<: *defaults
 
-  include_repos:
-    - meetclep
+  members:
+    - bensymonds
+    - gustavolobo
+    - peterwdj
+
+  channel: "#growth_squad"
+
+plus:
+  <<: *defaults
+  members:
+    - cazwazacz
+    - fuzzmonkey
+    - joshuafleck
+    - LogaJ
+
+  channel: "#cleo_plus_squad"
+
+mobile-app:
+  <<: *defaults
+
+  members:
+    - hovlev
+    - joshwarwick
+    - wilco3d
+    - Braden1996
+    - ablamunits
+    - obates
+
+  channel: "#app_squad"
