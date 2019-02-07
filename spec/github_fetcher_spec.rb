@@ -18,12 +18,12 @@ describe 'GithubFetcher' do
   let(:blocked_and_wip) do
     [
       {
-        'url' => 'https://api.github.com/repos/alphagov/whitehall/labels/blocked',
+        'url' => 'https://api.github.com/repos/meetcleo/whitehall/labels/blocked',
         'name' => 'blocked',
         'color' => 'e11d21'
       },
       {
-        'url' => 'https://api.github.com/repos/alphagov/whitehall/labels/wip',
+        'url' => 'https://api.github.com/repos/meetcleo/whitehall/labels/wip',
         'name' => 'wip',
         'color' => 'fbca04'
       }
@@ -35,7 +35,7 @@ describe 'GithubFetcher' do
       '[FOR DISCUSSION ONLY] Remove Whitehall.case_study_preview_host' =>
         {
           'title' => '[FOR DISCUSSION ONLY] Remove Whitehall.case_study_preview_host',
-          'link' => 'https://github.com/alphagov/whitehall/pull/2266',
+          'link' => 'https://github.com/meetcleo/whitehall/pull/2266',
           'author' => 'mattbostock',
           'repo' => 'whitehall',
           'comments_count' => '1',
@@ -48,7 +48,7 @@ describe 'GithubFetcher' do
       'Remove all Import-related code' =>
         {
           'title' => 'Remove all Import-related code',
-          'link' => 'https://github.com/alphagov/whitehall-rebuild/pull/2248',
+          'link' => 'https://github.com/meetcleo/whitehall-rebuild/pull/2248',
           'author' => 'tekin',
           'repo' => 'whitehall-rebuild',
           'comments_count' => '5',
@@ -68,7 +68,7 @@ describe 'GithubFetcher' do
     double(Sawyer::Resource,
            user: double(Sawyer::Resource, login: 'mattbostock'),
            title: '[FOR DISCUSSION ONLY] Remove Whitehall.case_study_preview_host',
-           html_url: 'https://github.com/alphagov/whitehall/pull/2266',
+           html_url: 'https://github.com/meetcleo/whitehall/pull/2266',
            number: 2266,
            review_comments: 1,
            comments: 0,
@@ -79,7 +79,7 @@ describe 'GithubFetcher' do
     double(Sawyer::Resource,
            user: double(Sawyer::Resource, login: 'tekin'),
            title: 'Remove all Import-related code',
-           html_url: 'https://github.com/alphagov/whitehall-rebuild/pull/2248',
+           html_url: 'https://github.com/meetcleo/whitehall-rebuild/pull/2248',
            number: 2248,
            review_comments: 1,
            comments: 4,
@@ -111,15 +111,15 @@ describe 'GithubFetcher' do
     expect(Octokit::Client).to receive(:new).and_return(fake_octokit_client)
     expect(fake_octokit_client).to receive_message_chain('user.login')
     expect(fake_octokit_client).to receive(:auto_paginate=).with(true)
-    expect(fake_octokit_client).to receive(:search_issues).with("is:pr state:open user:alphagov").and_return(double(items: [pull_2266, pull_2248]))
+    expect(fake_octokit_client).to receive(:search_issues).with("is:pr state:open user:meetcleo").and_return(double(items: [pull_2266, pull_2248]))
 
     allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_repo_name, 2266).and_return(comments_2266)
     allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2248).and_return(comments_2248)
 
     allow(fake_octokit_client).to receive(:pull_request).with(whitehall_rebuild_repo_name, 2248).and_return(pull_2248)
     allow(fake_octokit_client).to receive(:pull_request).with(whitehall_repo_name, 2266).and_return(pull_2266)
-    allow(fake_octokit_client).to receive(:get).with(%r"repos/alphagov/[\w-]+/pulls/2248/reviews").and_return(reviews_2248)
-    allow(fake_octokit_client).to receive(:get).with(%r"repos/alphagov/[\w-]+/pulls/2266/reviews").and_return(reviews_2266)
+    allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2248/reviews").and_return(reviews_2248)
+    allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2266/reviews").and_return(reviews_2266)
   end
 
   shared_examples_for 'fetching from GitHub' do
