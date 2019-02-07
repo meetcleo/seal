@@ -1,0 +1,20 @@
+# Please insert new items alphabetically.
+core:
+  members:
+    - bryonywatson1
+    - GeorgeA93
+    - h-lame
+    - mijoharas
+    - tommg
+
+  channel:
+    "#core_squad"
+
+  exclude_titles:
+    - "WIP"
+    - "[WIP]"
+    - "DO NOT MERGE"
+    - "[DO NOT MERGE]"
+
+  include_repos:
+    - meetclep
