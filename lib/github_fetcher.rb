@@ -80,11 +80,16 @@ class GithubFetcher
   end
 
   def hidden?(pull_request, repo)
-    excluded_repo?(repo) ||
+    not_open?(pull_request.state) ||
+      excluded_repo?(repo) ||
       excluded_label?(pull_request, repo) ||
       excluded_title?(pull_request.title) ||
       !person_subscribed?(pull_request) ||
       (include_repos && !explicitly_included_repo?(repo))
+  end
+
+  def not_open?(state)
+    state != "open"
   end
 
   def excluded_label?(pull_request, repo)

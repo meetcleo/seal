@@ -72,7 +72,8 @@ describe 'GithubFetcher' do
            number: 2266,
            review_comments: 1,
            comments: 0,
-           updated_at: '2015-07-13 01:00:44 UTC'
+           updated_at: '2015-07-13 01:00:44 UTC',
+           state: 'open'
           )
   end
   let(:pull_2248) do
@@ -83,17 +84,21 @@ describe 'GithubFetcher' do
            number: 2248,
            review_comments: 1,
            comments: 4,
-           updated_at: '2015-07-17 01:00:44 UTC'
+           updated_at: '2015-07-17 01:00:44 UTC',
+           state: 'open'
           )
   end
-  let(:comments_2266) do [
+
+  let(:comments_2266) do
+    [
       "You should add more seal images on the front end",
       "Sure! I have done it now",
       "LGTM :+1:"
     ].map { |body| double(Sawyer::Resource, body: body)}
   end
 
-  let(:comments_2248) do [
+  let(:comments_2248) do
+    [
       "Could you embed a seal song?",
       "Sure! Please send me the recording"
     ].map { |body| double(Sawyer::Resource, body: body)}
@@ -107,11 +112,13 @@ describe 'GithubFetcher' do
 
   let(:reviews_2266) { [] }
 
+  let(:pull_requests) { [pull_2266, pull_2248] }
+
   before do
     expect(Octokit::Client).to receive(:new).and_return(fake_octokit_client)
     expect(fake_octokit_client).to receive_message_chain('user.login')
     expect(fake_octokit_client).to receive(:auto_paginate=).with(true)
-    expect(fake_octokit_client).to receive(:search_issues).with("is:pr state:open user:meetcleo").and_return(double(items: [pull_2266, pull_2248]))
+    expect(fake_octokit_client).to receive(:search_issues).with("is:pr state:open user:meetcleo").and_return(double(items: pull_requests))
 
     allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_repo_name, 2266).and_return(comments_2266)
     allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2248).and_return(comments_2248)
@@ -138,6 +145,38 @@ describe 'GithubFetcher' do
       allow(fake_octokit_client).to receive(:labels_for_issue).with(whitehall_repo_name, 2266).and_return([])
 
       expected_open_prs['Remove all Import-related code']['labels'] = blocked_and_wip if expected_open_prs['Remove all Import-related code']
+    end
+
+    context 'excluding closed prs' do
+      let(:pull_2222) do
+        double(Sawyer::Resource,
+               user: double(Sawyer::Resource, login: 'h-lame'),
+               title: 'Embiggen images',
+               html_url: 'https://github.com/meetcleo/whitehall-rebuild/pull/2222',
+               number: 2222,
+               review_comments: 0,
+               comments: 0,
+               updated_at: '2015-07-10 01:00:44 UTC',
+               state: 'closed'
+              )
+      end
+      let(:comments_2222) { [] }
+
+      let(:reviews_2222) { [] }
+
+      let(:pull_requests) { [pull_2266, pull_2248, pull_2222] }
+
+      before do
+        allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2222).and_return(comments_2222)
+        allow(fake_octokit_client).to receive(:pull_request).with(whitehall_rebuild_repo_name, 2222).and_return(pull_2222)
+        allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2222/reviews").and_return(reviews_2222)
+      end
+
+      it "filters out the PR with the closed status" do
+        titles = github_fetcher.list_pull_requests.keys
+
+        expect(titles).not_to include 'Embiggen images'
+      end
     end
 
     context 'excluding nothing' do
