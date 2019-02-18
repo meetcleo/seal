@@ -4,7 +4,6 @@ teams=(
   core
   growth
   plus
-  mobile-app
 )
 
 for team in ${teams[*]}; do
