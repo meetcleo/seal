@@ -27,7 +27,6 @@ growth:
   <<: *defaults
 
   members:
-    - bensymonds
     - gustavolobo
     - peterwdj
 
@@ -53,5 +52,6 @@ mobile-app:
     - Braden1996
     - ablamunits
     - obates
+    - bensymonds
 
   channel: "#app_squad"
