@@ -15,7 +15,19 @@ describe 'GithubFetcher' do
   let(:fake_octokit_client) { double(Octokit::Client) }
   let(:whitehall_repo_name) { "#{GithubFetcher::ORGANISATION}/whitehall" }
   let(:whitehall_rebuild_repo_name) { "#{GithubFetcher::ORGANISATION}/whitehall-rebuild" }
-  let(:blocked_and_wip) do
+  let(:blocked_and_wip_resource) do
+    [
+      double(Sawyer::Resource,
+             url: 'https://api.github.com/repos/meetcleo/whitehall/labels/blocked',
+             name: 'blocked',
+             color: 'e11d21'),
+      double(Sawyer::Resource,
+             url: 'https://api.github.com/repos/meetcleo/whitehall/labels/wip',
+             name: 'wip',
+             color: 'fbca04')
+    ]
+  end
+  let(:blocked_and_wip_response) do
     [
       {
         'url' => 'https://api.github.com/repos/meetcleo/whitehall/labels/blocked',
@@ -75,6 +87,7 @@ describe 'GithubFetcher' do
            updated_at: '2015-07-13 01:00:44 UTC',
            state: 'open',
            head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall')),
+           labels: [],
            draft: false
           )
   end
@@ -89,6 +102,7 @@ describe 'GithubFetcher' do
            updated_at: '2015-07-17 01:00:44 UTC',
            state: 'open',
            head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+           labels: blocked_and_wip_resource,
            draft: false
           )
   end
@@ -145,10 +159,7 @@ describe 'GithubFetcher' do
     let(:use_labels) { true }
 
     before do
-      allow(fake_octokit_client).to receive(:labels_for_issue).with(whitehall_rebuild_repo_name, 2248).and_return(blocked_and_wip)
-      allow(fake_octokit_client).to receive(:labels_for_issue).with(whitehall_repo_name, 2266).and_return([])
-
-      expected_open_prs['Remove all Import-related code']['labels'] = blocked_and_wip if expected_open_prs['Remove all Import-related code']
+      expected_open_prs['Remove all Import-related code']['labels'] = blocked_and_wip_response if expected_open_prs['Remove all Import-related code']
     end
 
     context 'excluding closed prs' do
@@ -163,6 +174,7 @@ describe 'GithubFetcher' do
                updated_at: '2015-07-10 01:00:44 UTC',
                state: 'closed',
                head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               labels: [],
                draft: false
               )
       end
@@ -197,6 +209,7 @@ describe 'GithubFetcher' do
                updated_at: '2015-09-10 01:00:44 UTC',
                state: 'open',
                head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               labels: [],
                draft: true
               )
       end

@@ -43,7 +43,7 @@ class GithubFetcher
     pr['thumbs_up'] = count_thumbs_up(pull_request, repo_name)
     pr['approved'] = approved?(pull_request, repo_name)
     pr['updated'] = Date.parse(pull_request.updated_at.to_s)
-    pr['labels'] = labels(pull_request, repo_name)
+    pr['labels'] = labels(pull_request)
     pr
   end
 
@@ -75,17 +75,17 @@ class GithubFetcher
     reviews.any? { |review| review.state == 'APPROVED' }
   end
 
-  def labels(pull_request, repo)
+  def labels(pull_request)
     return [] unless use_labels
-    key = "#{ORGANISATION}/#{repo}/#{pull_request.number}".to_sym
-    @labels[key] ||= @github.labels_for_issue("#{ORGANISATION}/#{repo}", pull_request.number)
+    key = "#{ORGANISATION}/#{pull_request.head.repo.name}/#{pull_request.number}".to_sym
+    @labels[key] ||= pull_request.labels.map { |l| { 'url' => l.url, 'name' => l.name, 'color' => l.color } }
   end
 
   def hidden?(pull_request, repo)
     not_open?(pull_request) ||
       draft?(pull_request) ||
       excluded_repo?(repo) ||
-      excluded_label?(pull_request, repo) ||
+      excluded_label?(pull_request) ||
       excluded_title?(pull_request.title) ||
       !person_subscribed?(pull_request) ||
       (include_repos && !explicitly_included_repo?(repo))
@@ -99,9 +99,9 @@ class GithubFetcher
     pull_request.draft
   end
 
-  def excluded_label?(pull_request, repo)
+  def excluded_label?(pull_request)
     return false unless exclude_labels
-    lowercase_label_names = labels(pull_request, repo).map { |l| l['name'].downcase }
+    lowercase_label_names = labels(pull_request).map { |l| l['name'].downcase }
     exclude_labels.any? { |e| lowercase_label_names.include?(e) }
   end
 
