@@ -73,7 +73,9 @@ describe 'GithubFetcher' do
            review_comments: 1,
            comments: 0,
            updated_at: '2015-07-13 01:00:44 UTC',
-           state: 'open'
+           state: 'open',
+           head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall')),
+           draft: false
           )
   end
   let(:pull_2248) do
@@ -85,7 +87,9 @@ describe 'GithubFetcher' do
            review_comments: 1,
            comments: 4,
            updated_at: '2015-07-17 01:00:44 UTC',
-           state: 'open'
+           state: 'open',
+           head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+           draft: false
           )
   end
 
@@ -157,7 +161,9 @@ describe 'GithubFetcher' do
                review_comments: 0,
                comments: 0,
                updated_at: '2015-07-10 01:00:44 UTC',
-               state: 'closed'
+               state: 'closed',
+               head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               draft: false
               )
       end
       let(:comments_2222) { [] }
@@ -176,6 +182,40 @@ describe 'GithubFetcher' do
         titles = github_fetcher.list_pull_requests.keys
 
         expect(titles).not_to include 'Embiggen images'
+      end
+    end
+
+    context 'excluding draft prs' do
+      let(:pull_2223) do
+        double(Sawyer::Resource,
+               user: double(Sawyer::Resource, login: 'h-lame'),
+               title: 'Implement new login features',
+               html_url: 'https://github.com/meetcleo/whitehall-rebuild/pull/2223',
+               number: 2223,
+               review_comments: 0,
+               comments: 0,
+               updated_at: '2015-09-10 01:00:44 UTC',
+               state: 'open',
+               head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               draft: true
+              )
+      end
+      let(:comments_2223) { [] }
+
+      let(:reviews_2223) { [] }
+
+      let(:pull_requests) { [pull_2266, pull_2248, pull_2223] }
+
+      before do
+        allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2223).and_return(comments_2223)
+        allow(fake_octokit_client).to receive(:pull_request).with(whitehall_rebuild_repo_name, 2223).and_return(pull_2223)
+        allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2223/reviews").and_return(reviews_2223)
+      end
+
+      it "filters out the PR that is a draft" do
+        titles = github_fetcher.list_pull_requests.keys
+
+        expect(titles).not_to include 'Implement new login features'
       end
     end
 
@@ -236,6 +276,75 @@ describe 'GithubFetcher' do
     let(:use_labels) { false }
 
     it_behaves_like 'fetching from GitHub'
+
+    context 'excluding closed prs' do
+      let(:pull_2222) do
+        double(Sawyer::Resource,
+               user: double(Sawyer::Resource, login: 'h-lame'),
+               title: 'Embiggen images',
+               html_url: 'https://github.com/meetcleo/whitehall-rebuild/pull/2222',
+               number: 2222,
+               review_comments: 0,
+               comments: 0,
+               updated_at: '2015-07-10 01:00:44 UTC',
+               state: 'closed',
+               head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               draft: false
+              )
+      end
+      let(:comments_2222) { [] }
+
+      let(:reviews_2222) { [] }
+
+      let(:pull_requests) { [pull_2266, pull_2248, pull_2222] }
+
+      before do
+        allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2222).and_return(comments_2222)
+        allow(fake_octokit_client).to receive(:pull_request).with(whitehall_rebuild_repo_name, 2222).and_return(pull_2222)
+        allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2222/reviews").and_return(reviews_2222)
+      end
+
+      it "filters out the PR with the closed status" do
+        titles = github_fetcher.list_pull_requests.keys
+
+        expect(titles).not_to include 'Embiggen images'
+      end
+    end
+
+    context 'excluding draft prs' do
+      let(:pull_2223) do
+        double(Sawyer::Resource,
+               user: double(Sawyer::Resource, login: 'h-lame'),
+               title: 'Implement new login features',
+               html_url: 'https://github.com/meetcleo/whitehall-rebuild/pull/2223',
+               number: 2223,
+               review_comments: 0,
+               comments: 0,
+               updated_at: '2015-09-10 01:00:44 UTC',
+               state: 'open',
+               head: double(Sawyer::Resource, repo: double(Sawyer::Resource, name: 'whitehall-rebuild')),
+               draft: true
+              )
+      end
+      let(:comments_2223) { [] }
+
+      let(:reviews_2223) { [] }
+
+      let(:pull_requests) { [pull_2266, pull_2248, pull_2223] }
+
+      before do
+        allow(fake_octokit_client).to receive(:issue_comments).with(whitehall_rebuild_repo_name, 2223).and_return(comments_2223)
+        allow(fake_octokit_client).to receive(:pull_request).with(whitehall_rebuild_repo_name, 2223).and_return(pull_2223)
+        allow(fake_octokit_client).to receive(:get).with(%r"repos/meetcleo/[\w-]+/pulls/2223/reviews").and_return(reviews_2223)
+      end
+
+      it "filters out the PR that is a draft" do
+        titles = github_fetcher.list_pull_requests.keys
+
+        expect(titles).not_to include 'Implement new login features'
+      end
+    end
+
     context 'title exclusions' do
       context 'excluding no titles' do
         it_behaves_like 'fetching from GitHub'

@@ -2,8 +2,8 @@ require 'octokit'
 
 class GithubFetcher
   ORGANISATION ||= ENV['SEAL_ORGANISATION']
-  # TODO: remove media type when review support comes out of preview
-  Octokit.default_media_type = 'application/vnd.github.black-cat-preview+json'
+  # TODO: remove media type when draft status support comes out of preview
+  Octokit.default_media_type = 'application/vnd.github.shadow-cat-preview'
 
   attr_accessor :people
 
@@ -23,7 +23,7 @@ class GithubFetcher
 
   def list_pull_requests
     pull_requests_from_github.each_with_object({}) do |pull_request, pull_requests|
-      repo_name = pull_request.html_url.split("/")[4]
+      repo_name = pull_request.head.repo.name
       next if hidden?(pull_request, repo_name)
       pull_requests[pull_request.title] = present_pull_request(pull_request, repo_name)
     end
@@ -39,7 +39,7 @@ class GithubFetcher
     pr['link'] = pull_request.html_url
     pr['author'] = pull_request.user.login
     pr['repo'] = repo_name
-    pr['comments_count'] = count_comments(pull_request, repo_name)
+    pr['comments_count'] = count_comments(pull_request)
     pr['thumbs_up'] = count_thumbs_up(pull_request, repo_name)
     pr['approved'] = approved?(pull_request, repo_name)
     pr['updated'] = Date.parse(pull_request.updated_at.to_s)
@@ -50,16 +50,18 @@ class GithubFetcher
   # https://developer.github.com/v3/search/#search-issues
   # returns up to 100 results per page.
   def pull_requests_from_github
-    @github.search_issues("is:pr state:open user:#{ORGANISATION}").items
+    @github.search_issues("is:pr state:open user:#{ORGANISATION}").items.map do |pull_request|
+      repo_name = pull_request.html_url.split("/")[4]
+      @github.pull_request("#{ORGANISATION}/#{repo_name}", pull_request.number)
+    end
   end
 
   def person_subscribed?(pull_request)
     people.empty? || people.include?("#{pull_request.user.login}")
   end
 
-  def count_comments(pull_request, repo)
-    pr = @github.pull_request("#{ORGANISATION}/#{repo}", pull_request.number)
-    (pr.review_comments + pr.comments).to_s
+  def count_comments(pull_request)
+    (pull_request.review_comments + pull_request.comments).to_s
   end
 
   def count_thumbs_up(pull_request, repo)
@@ -80,7 +82,8 @@ class GithubFetcher
   end
 
   def hidden?(pull_request, repo)
-    not_open?(pull_request.state) ||
+    not_open?(pull_request) ||
+      draft?(pull_request) ||
       excluded_repo?(repo) ||
       excluded_label?(pull_request, repo) ||
       excluded_title?(pull_request.title) ||
@@ -88,8 +91,12 @@ class GithubFetcher
       (include_repos && !explicitly_included_repo?(repo))
   end
 
-  def not_open?(state)
-    state != "open"
+  def not_open?(pull_request)
+    pull_request.state != "open"
+  end
+
+  def draft?(pull_request)
+    pull_request.draft
   end
 
   def excluded_label?(pull_request, repo)
