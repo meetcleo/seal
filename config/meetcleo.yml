@@ -7,9 +7,12 @@ _defaults: &defaults
 
   exclude_labels:
     - "Waiting on copy"
+    - "Do Not Merge"
 
   include_repos:
     - meetcleo
+
+  use_labels: true
 
 core:
   <<: *defaults
