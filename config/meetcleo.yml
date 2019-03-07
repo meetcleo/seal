@@ -30,8 +30,7 @@ growth:
   <<: *defaults
 
   members:
-    - gustavolobo
-    - peterwdj
+    - bestan
 
   channel: "#growth_squad"
 
@@ -41,7 +40,7 @@ plus:
     - cazwazacz
     - fuzzmonkey
     - joshuafleck
-    - LogaJ
+    - peterwdj
 
   channel: "#cleo_plus_squad"
 
@@ -55,6 +54,6 @@ mobile-app:
     - Braden1996
     - ablamunits
     - obates
-    - bensymonds
+    - gustavolobo
 
   channel: "#app_squad"
