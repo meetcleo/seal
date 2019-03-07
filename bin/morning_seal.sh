@@ -2,7 +2,6 @@
 
 teams=(
   core
-  growth
   plus
 )
 
