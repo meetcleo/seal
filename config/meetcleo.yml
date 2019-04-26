@@ -20,9 +20,8 @@ core:
   members:
     - bryonywatson1
     - GeorgeA93
-    - h-lame
+    - joshuafleck
     - mijoharas
-    - tommg
 
   channel: "#core_squad"
 
@@ -39,7 +38,7 @@ plus:
   members:
     - cazwazacz
     - fuzzmonkey
-    - joshuafleck
+    - h-lame
     - peterwdj
 
   channel: "#cleo_plus_squad"
@@ -49,9 +48,7 @@ mobile-app:
 
   members:
     - hovlev
-    - joshwarwick
     - wilco3d
-    - Braden1996
     - ablamunits
     - obates
     - gustavolobo
