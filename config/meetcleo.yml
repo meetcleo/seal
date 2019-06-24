@@ -19,8 +19,7 @@ core:
 
   members:
     - bryonywatson1
-    - GeorgeA93
-    - joshuafleck
+    - cazwazacz
     - mijoharas
 
   channel: "#core_squad"
@@ -36,10 +35,11 @@ growth:
 plus:
   <<: *defaults
   members:
-    - cazwazacz
+    - AgentAntelope
     - fuzzmonkey
+    - GeorgeA93
     - h-lame
-    - peterwdj
+    - jwblackwood
 
   channel: "#cleo_plus_squad"
 
