@@ -1,8 +1,7 @@
 #!/bin/bash
 
 teams=(
-  core
-  plus
+  lending
 )
 
 for team in ${teams[*]}; do
