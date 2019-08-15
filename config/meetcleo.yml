@@ -36,8 +36,7 @@ lending:
   <<: *defaults
   members:
     - AgentAntelope
-    - fuzzmonkey
-    - GeorgeA93
+    - b-murphy
     - h-lame
     - jwblackwood
 
