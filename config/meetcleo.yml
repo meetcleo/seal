@@ -32,7 +32,7 @@ growth:
 
   channel: "#growth_squad"
 
-lending:
+money:
   <<: *defaults
   members:
     - AgentAntelope
@@ -41,7 +41,7 @@ lending:
     - h-lame
     - jwblackwood
 
-  channel: "#lending_squad"
+  channel: "#money_squad"
 
 mobile-app:
   <<: *defaults
