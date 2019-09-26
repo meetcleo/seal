@@ -1,7 +1,7 @@
 #!/bin/bash
 
 teams=(
-  lending
+  money
 )
 
 for team in ${teams[*]}; do
