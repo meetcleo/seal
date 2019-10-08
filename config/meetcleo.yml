@@ -35,11 +35,10 @@ growth:
 money:
   <<: *defaults
   members:
-    - AgentAntelope
-    - b-murphy
     - contatc2
     - h-lame
     - jwblackwood
+    - joshuafleck
 
   channel: "#money_squad"
 
