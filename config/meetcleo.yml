@@ -14,42 +14,11 @@ _defaults: &defaults
 
   use_labels: true
 
-core:
-  <<: *defaults
-
-  members:
-    - bryonywatson1
-    - cazwazacz
-    - mijoharas
-
-  channel: "#core_squad"
-
-growth:
-  <<: *defaults
-
-  members:
-    - bestan
-
-  channel: "#growth_squad"
-
 money:
   <<: *defaults
   members:
     - contatc2
     - h-lame
     - jwblackwood
-    - joshuafleck
 
   channel: "#money_squad"
-
-mobile-app:
-  <<: *defaults
-
-  members:
-    - hovlev
-    - wilco3d
-    - ablamunits
-    - obates
-    - gustavolobo
-
-  channel: "#app_squad"
