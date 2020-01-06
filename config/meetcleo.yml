@@ -17,6 +17,7 @@ _defaults: &defaults
 money:
   <<: *defaults
   members:
+    - AgentAntelope
     - contatc2
     - h-lame
     - jwblackwood
