@@ -18,7 +18,7 @@ money:
   <<: *defaults
   members:
     - AgentAntelope
-    - contatc2
+    - Berta-G
     - h-lame
 
   channel: "#money_squad"
