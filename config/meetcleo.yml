@@ -25,3 +25,12 @@ money:
     - wilco3d
 
   channel: "#money_squad"
+
+squad_x:
+  <<: *defaults
+  members:
+    - jwblackwood
+    - h-lame
+    - te-chris
+  
+  channel: "#squad-x"
