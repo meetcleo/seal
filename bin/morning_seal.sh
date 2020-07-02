@@ -2,6 +2,7 @@
 
 teams=(
   money
+  squad_x
 )
 
 for team in ${teams[*]}; do
