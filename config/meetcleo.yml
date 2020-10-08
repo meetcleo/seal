@@ -18,9 +18,7 @@ money:
   <<: *defaults
   members:
     - AgentAntelope
-    - Berta-G
     - fernandezvieira 
-    - joshuafleck
     - kkavita92
     - wilco3d
 
@@ -31,5 +29,6 @@ squad_x:
   members:
     - jwblackwood
     - h-lame
-  
+    - tomwhatmore 
+
   channel: "#squad-x"
