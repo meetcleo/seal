@@ -27,8 +27,9 @@ money:
 squad_x:
   <<: *defaults
   members:
-    - jwblackwood
     - h-lame
-    - tomwhatmore 
+    - jwblackwood
+    - panagspirou
+    - tomwhatmore
 
   channel: "#squad-x"
