@@ -27,8 +27,6 @@ money:
 squad_x:
   <<: *defaults
   members:
-    - h-lame
-    - jwblackwood
     - panagspirou
     - tomwhatmore
 
