@@ -14,7 +14,7 @@ _defaults: &defaults
 
   use_labels: true
 
-money:
+monet:
   <<: *defaults
   members:
     - AgentAntelope
@@ -22,7 +22,7 @@ money:
     - kkavita92
     - wilco3d
 
-  channel: "#money_squad"
+  channel: "#monet_squad"
 
 squad_x:
   <<: *defaults
