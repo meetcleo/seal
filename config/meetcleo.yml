@@ -27,6 +27,7 @@ monet:
 squad_x:
   <<: *defaults
   members:
+    - ClemCB
     - panagspirou
     - tomwhatmore
 
