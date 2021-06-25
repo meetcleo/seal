@@ -18,6 +18,7 @@ monet:
   <<: *defaults
   members:
     - AgentAntelope
+    - fernandezvieira
     - olivictor
     - wilco3d
 
