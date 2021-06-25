@@ -18,16 +18,15 @@ monet:
   <<: *defaults
   members:
     - AgentAntelope
-    - fernandezvieira 
     - olivictor
     - wilco3d
 
   channel: "#monet_squad"
 
-squad_x:
+gringotts:
   <<: *defaults
   members:
     - ClemCB
     - tomwhatmore
 
-  channel: "#squad-x"
+  channel: "#gringotts_internal"
