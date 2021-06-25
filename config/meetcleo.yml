@@ -19,7 +19,7 @@ monet:
   members:
     - AgentAntelope
     - fernandezvieira 
-    - kkavita92
+    - olivictor
     - wilco3d
 
   channel: "#monet_squad"
@@ -28,7 +28,6 @@ squad_x:
   <<: *defaults
   members:
     - ClemCB
-    - panagspirou
     - tomwhatmore
 
   channel: "#squad-x"
