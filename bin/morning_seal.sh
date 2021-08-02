@@ -1,8 +1,8 @@
 #!/bin/bash
 
 teams=(
-  money
-  squad_x
+  monet
+  gringotts
 )
 
 for team in ${teams[*]}; do
