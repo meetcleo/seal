@@ -3,6 +3,7 @@
 teams=(
   monet
   gringotts
+  odyssey
 )
 
 for team in ${teams[*]}; do
