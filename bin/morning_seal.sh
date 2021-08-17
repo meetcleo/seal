@@ -1,7 +1,6 @@
 #!/bin/bash
 
 teams=(
-  monet
   gringotts
   odyssey
 )
