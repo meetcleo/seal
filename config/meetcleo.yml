@@ -29,6 +29,8 @@ gringotts:
   members:
     - ClemCB
     - tomwhatmore
+    - iconpin
+    - flood4life
 
   channel: "#gringotts_internal"
 
