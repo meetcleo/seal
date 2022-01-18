@@ -29,8 +29,6 @@ gringotts:
   members:
     - ClemCB
     - tomwhatmore
-    - iconpin
-    - flood4life
 
   channel: "#gringotts_internal"
 
@@ -38,8 +36,19 @@ odyssey:
   <<: *defaults
   members:
     - AgentAntelope
-    - andreacfm
     - CliffAw
     - cummings
+    - iconpin
+    - flood4life
   
   channel: "#odyssey-dev"
+
+osiris:
+  <<: *defaults
+  members:
+    - AgentAntelope
+    - andreacfm
+    - soph-g
+    - cummings
+  
+  channel: "#osiris_dev"
