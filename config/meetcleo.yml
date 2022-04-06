@@ -28,6 +28,9 @@ gringotts:
   <<: *defaults
   members:
     - ClemCB
+    - flood4life
+    - kofibright
+    - novotnyjakub
     - tomwhatmore
 
   channel: "#gringotts_internal"
@@ -39,8 +42,7 @@ odyssey:
     - CliffAw
     - SaraBon
     - iconpin
-    - flood4life
-  
+
   channel: "#odyssey-dev"
 
 osiris:
