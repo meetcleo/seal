@@ -45,12 +45,9 @@ odyssey:
 
   channel: "#odyssey-dev"
 
-osiris:
+security_alerts:
   <<: *defaults
   members:
-    - AgentAntelope
-    - andreacfm
-    - soph-g
-    - cummings
-  
-  channel: "#osiris_dev"
+    - app/dependabot
+
+  channel: "#first-responders"
