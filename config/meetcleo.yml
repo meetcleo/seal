@@ -48,6 +48,6 @@ odyssey:
 security_alerts:
   <<: *defaults
   members:
-    - app/dependabot
+    - "dependabot[bot]"
 
   channel: "#first-responders"
