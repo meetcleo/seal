@@ -17,8 +17,7 @@ _defaults: &defaults
 monet:
   <<: *defaults
   members:
-    - fernandezvieira
-    - olivictor
+    - AgentAntelope
     - RSijelmass
     - wilco3d
 
@@ -32,17 +31,18 @@ gringotts:
     - kofibright
     - novotnyjakub
     - tomwhatmore
+    - FriedSock
 
   channel: "#gringotts_internal"
 
 odyssey:
   <<: *defaults
   members:
-    - AgentAntelope
     - CliffAw
     - SaraBon
     - iconpin
     - tarawud
+    - naeglinghaff
 
   channel: "#odyssey-dev"
 
