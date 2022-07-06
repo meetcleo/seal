@@ -71,5 +71,7 @@ data:
 
   include_repos:
     - analytics
+  
+  members: []
 
   channel: "#dbt-code-review"
