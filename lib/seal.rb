@@ -42,7 +42,7 @@ class Seal
   end
 
   def org_config
-    @org_config ||= YAML.load_file(configuration_filename) if File.exist?(configuration_filename)
+    @org_config ||= YAML.load_file(configuration_filename, aliases: true) if File.exist?(configuration_filename)
   end
 
   def configuration_filename
