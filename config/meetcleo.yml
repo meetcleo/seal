@@ -1,4 +1,4 @@
-_defaults: &defaults
+_default_filters: &default_filters
   exclude_titles:
     - "WIP"
     - "[WIP]"
@@ -9,13 +9,14 @@ _defaults: &defaults
     - "Waiting on copy"
     - "Do Not Merge"
 
-  include_repos:
-    - meetcleo
-
   use_labels: true
 
 monet:
-  <<: *defaults
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+
   members:
     - AgentAntelope
     - RSijelmass
@@ -24,7 +25,11 @@ monet:
   channel: "#monet_squad"
 
 gringotts:
-  <<: *defaults
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+
   members:
     - ClemCB
     - flood4life
@@ -36,7 +41,11 @@ gringotts:
   channel: "#gringotts_internal"
 
 odyssey:
-  <<: *defaults
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+
   members:
     - CliffAw
     - SaraBon
@@ -47,8 +56,20 @@ odyssey:
   channel: "#odyssey-dev"
 
 security_alerts:
-  <<: *defaults
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+
   members:
     - "dependabot[bot]"
 
   channel: "#first-responders"
+
+data:
+  <<: *default_filters
+
+  include_repos:
+    - analytics
+
+  channel: "#dbt-code-review"
