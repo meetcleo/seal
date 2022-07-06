@@ -11,6 +11,7 @@ _defaults: &defaults
 
   include_repos:
     - meetcleo
+    - analytics
 
   use_labels: true
 
@@ -52,3 +53,7 @@ security_alerts:
     - "dependabot[bot]"
 
   channel: "#first-responders"
+
+data:
+  <<: *defaults
+  channel: "#dbt-code-review"
