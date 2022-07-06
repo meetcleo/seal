@@ -4,6 +4,7 @@ teams=(
   gringotts
   odyssey
   security_alerts
+  data
 )
 
 for team in ${teams[*]}; do
