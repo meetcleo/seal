@@ -48,7 +48,6 @@ odyssey:
     - meetcleo
 
   members:
-    - CliffAw
     - SaraBon
     - iconpin
     - tarawud
@@ -76,3 +75,17 @@ data:
   members: []
 
   channel: "#dbt-code-review"
+
+lannisters:
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+
+  members:
+    - FriedSock
+    - CliffAw
+    - DhirenAtodaria
+    - repoocuts
+
+  channel: "#lannister-dev"
