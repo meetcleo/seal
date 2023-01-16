@@ -32,14 +32,12 @@ gringotts:
 
   members:
     - ClemCB
-    - flood4life
+    - davefrey
     - kofibright
-    - novotnyjakub
-    - tomwhatmore
-    - FriedSock
     - sachimp
-    - BertZZ
-
+    - tomwhatmore
+    - toypadlock
+    
   channel: "#gringotts_internal"
 
 odyssey:
