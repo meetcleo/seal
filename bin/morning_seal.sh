@@ -4,7 +4,8 @@ teams=(
   gringotts
   odyssey
   security_alerts
-  data
+  data,
+  lannisters
 )
 
 for team in ${teams[*]}; do
