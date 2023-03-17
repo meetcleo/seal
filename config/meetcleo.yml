@@ -24,7 +24,7 @@ monet:
 
   channel: "#monet_squad"
 
-gringotts:
+payments_infrastructure:
   <<: *default_filters
 
   include_repos:
@@ -38,7 +38,7 @@ gringotts:
     - tomwhatmore
     - toypadlock
     
-  channel: "#gringotts_internal"
+  channel: "#payments-infrastructure-internal"
 
 odyssey:
   <<: *default_filters
@@ -53,7 +53,7 @@ odyssey:
     - naeglinghaff
     - stevehook
 
-  channel: "#odyssey-dev"
+  channel: "#cash-advance-odyssey-dev"
 
 security_alerts:
   <<: *default_filters
@@ -76,7 +76,7 @@ data:
 
   channel: "#dbt-code-review"
 
-lannisters:
+payments_security_experience:
   <<: *default_filters
 
   include_repos:
@@ -89,4 +89,4 @@ lannisters:
     - repoocuts
     - karimtimer
 
-  channel: "#lannister-dev"
+  channel: "##payments-security-experience-dev"
