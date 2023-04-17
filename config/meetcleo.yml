@@ -37,6 +37,8 @@ payments_infrastructure:
     - sachimp
     - tomwhatmore
     - toypadlock
+    - FriedSock
+    - joelbiffin
     
   channel: "#payments-infrastructure-internal"
 
@@ -83,7 +85,6 @@ payments_security_experience:
     - meetcleo
 
   members:
-    - FriedSock
     - CliffAw
     - DhirenAtodaria
     - repoocuts
