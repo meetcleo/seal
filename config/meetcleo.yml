@@ -120,11 +120,4 @@ seal_team:
     - meetcleo
     - seal
 
-  members:
-    - davefrey
-    - toypadlock
-    - claire-c
-    - Mike-Heneghan
-    - h-lame
-
   channel: "#seal-bot-test"

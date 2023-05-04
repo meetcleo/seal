@@ -1,8 +1,7 @@
 #!/bin/bash
 
 teams=(
-  govuk-accounts
-  govuk-platform-security-reliability
+  seal_team
 )
 
 for team in ${teams[*]} ; do
