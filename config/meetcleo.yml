@@ -91,3 +91,19 @@ payments_security_experience:
     - karimtimer
 
   channel: "##payments-security-experience-dev"
+
+seal_team:
+  <<: *default_filters
+
+  include_repos:
+    - meetcleo
+    - seal
+
+  members:
+    - davefrey
+    - toypadlock
+    - claire-c
+    - Mike-Heneghan
+    - h-lame
+
+  channel: "#seal-bot-test"
