@@ -106,4 +106,4 @@ seal_team:
     - Mike-Heneghan
     - h-lame
 
-  channel: "#seal-bot-test"
+  channel: "#action_group_seal-bot"
