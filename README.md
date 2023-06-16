@@ -1,3 +1,7 @@
+# The Past
+
+This branch represents the cleo fork of [binaryberry's seal](https://github.com/binaryberry/seal) before we migrated to using the [alphagov version](https://github.com/alphagov/seal) which has features we wanted to use.  The `main` branch of [this repo](https://github.com/meetcleo/seal) represents our work ontop of the alphagov version.  This `the_past` branch is just here to keep history in case we need it.
+
 # Seal
 [![Build Status](https://travis-ci.org/binaryberry/seal.svg)](https://travis-ci.org/binaryberry/seal)
 
