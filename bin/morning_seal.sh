@@ -8,7 +8,7 @@ teams=(
   security_alerts_web_and_be
   security_alerts_app
   card_2
-  ufu
+  tx_enrichment
   marketplace
 )
 
