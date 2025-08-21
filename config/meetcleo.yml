@@ -181,26 +181,6 @@ ewa_modelling:
   github_team: "ewa-modelling"
   channel: "#squad-ewa_modelling-devs"
 
-card_2:
-  exclude_titles:
-    - "WIP"
-    - "[WIP]"
-    - "DO NOT MERGE"
-    - "[DO NOT MERGE]"
-
-  exclude_labels:
-    - "Do Not Merge"
-
-  use_labels: true
-
-  include_repos:
-    - meetcleo
-    - mobile-app
-
-  github_team: "card-2"
-
-  channel: "#squad-honet_badgers-devs"
-
 tx_enrichment:
   exclude_titles:
     - "WIP"
