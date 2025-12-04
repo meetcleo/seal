@@ -58,6 +58,7 @@ security_alerts_app:
 
   include_repos:
     - mobile-app
+    - cleo-site
 
   members:
     - "dependabot[bot]"
