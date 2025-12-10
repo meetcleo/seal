@@ -7,7 +7,6 @@ teams=(
   seal_team
   security_alerts_web_and_be
   security_alerts_app
-  tx_enrichment
   marketplace
 )
 

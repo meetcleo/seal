@@ -182,25 +182,6 @@ ewa_modelling:
   github_team: "ewa-modelling"
   channel: "#squad-ewa_modelling-devs"
 
-tx_enrichment:
-  exclude_titles:
-    - "WIP"
-    - "[WIP]"
-    - "DO NOT MERGE"
-    - "[DO NOT MERGE]"
-
-  exclude_labels:
-    - "Do Not Merge"
-
-  use_labels: true
-
-  include_repos:
-    - meetcleo
-    - cleo-flux
-
-  github_team: "tx-enrichment-be"
-  channel: "#squad-tx-enrichment-eng"
-
 marketplace:
   exclude_titles:
     - "WIP"
